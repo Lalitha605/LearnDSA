@@ -7,13 +7,9 @@
 **Level:** Easy  
 **Status:** Solved using brute force and optimized dictionary approach  
 
----
-
 ### Problem Statement  
 Given an array of integers `nums` and an integer `target`, return the indices of the two numbers such that they add up to `target`.  
 You may assume exactly one solution exists, and you may not use the same element twice.
-
----
 
 ### Brute Force Approach – O(n²)
 
