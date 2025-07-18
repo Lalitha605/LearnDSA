@@ -41,3 +41,7 @@ public class Solution {
         return new int[] {};
     }
 }
+
+
+| 2025-07-18 | Valid Anagram | Easy | Used HashMap & sorted strings approach | 25 mins |
+
