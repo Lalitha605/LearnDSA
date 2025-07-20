@@ -43,5 +43,9 @@ public class Solution {
 }
 
 
-| 2025-07-18 | Valid Anagram | Easy | Used HashMap & sorted strings approach | 25 mins |
+| 2025-07-18 | Valid Anagram | Easy | Used HashMap & sorted strings approach | 65 mins |
+
+| 2025-07-20 | Contains Duplicate | Easy | Used Dictionary and HashSet to track seen nums | 30 mins |
+
+
 
