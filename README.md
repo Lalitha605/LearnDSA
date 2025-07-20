@@ -47,5 +47,6 @@ public class Solution {
 
 | 2025-07-20 | Contains Duplicate | Easy | Used Dictionary and HashSet to track seen nums | 30 mins |
 
-
+| 2025-07-20 | Intersection of Two Arrays | Easy | Used nested loops and HashSet to track unique nums | 30 mins |
+ 
 
