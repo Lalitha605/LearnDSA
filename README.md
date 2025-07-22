@@ -48,5 +48,41 @@ public class Solution {
 | 2025-07-20 | Contains Duplicate | Easy | Used Dictionary and HashSet to track seen nums | 30 mins |
 
 | 2025-07-20 | Intersection of Two Arrays | Easy | Used nested loops and HashSet to track unique nums | 30 mins |
- 
 
+| 2025-07-21 | Top K Frequent Elements | Medium | Used dictionary and sorted and return K elements | 60 mins |
+
+public class Solution {
+    public string FrequencySort(string s) {
+        Dictionary<char, int> charFreq  = new Dictionary<char, int>();
+        char[] chars = s.ToCharArray();
+        // Count frequency
+        foreach(char c in chars){
+            if(charFreq.ContainsKey(c)){
+                charFreq[c]++;
+            }
+            else{
+                charFreq[c]=1;
+            }
+        }
+        // Create buckets: index = frequency, value = list of characters
+        List<char>[] buckets = new List<char>[s.Length+1]; 
+        foreach(var pair in charFreq){
+            int f=pair.Value;
+            if(buckets[f]==null){
+                buckets[f] = new List<char>();
+            }
+            buckets[f].Add(pair.Key);
+        }
+        StringBuilder result = new StringBuilder();
+        // Build the result from buckets
+        for(int i=buckets.Length-1;i>0;i--){
+            if(buckets[i]!=null){
+                foreach(char c in buckets[i]){
+                    result.Append(new string(c,i)); // repeat char i times
+                }
+            }
+        }
+         return result.ToString();
+    }
+}
+| 2025-07-21 | Sort Characters By Frequency | Medium | Used dictionary with sorting and bucket sort of chars frequescy | 75 mins |
