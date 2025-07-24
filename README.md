@@ -85,4 +85,10 @@ public class Solution {
          return result.ToString();
     }
 }
-| 2025-07-21 | Sort Characters By Frequency | Medium | Used dictionary with sorting and bucket sort of chars frequescy | 75 mins |
+| 2025-07-22 | Sort Characters By Frequency | Medium | Used dictionary with sorting and bucket sort of chars frequescy | 75 mins |
+
+| 2025-07-23 | Product of Array Except Self | Medium | Used nested loops | 75 mins |
+
+| 2025-07-24 | Set Matrix Zeroes | Medium | Explored brute force with extra space, improved marking with boolean arrays, and optimized in-place solution using first row and column as markers | 90 mins |
+
+
