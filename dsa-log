@@ -1,1 +1,3 @@
 Topic wise learning
+https://leetcode.com/problems/find-the-index-of-the-first-occurrence-in-a-string/
+| 25-07-25 | Find the Index of the First Occurrence in a String | Easy | Used sliding window (manual substring comparison) | 45 mins | 
