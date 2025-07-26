@@ -1,3 +1,6 @@
 Topic wise learning
-https://leetcode.com/problems/find-the-index-of-the-first-occurrence-in-a-string/
+1. https://leetcode.com/problems/find-the-index-of-the-first-occurrence-in-a-string/
 | 25-07-25 | Find the Index of the First Occurrence in a String | Easy | Used sliding window (manual substring comparison) | 45 mins | 
+
+2. https://leetcode.com/problems/repeated-substring-pattern/description/
+| 2025-07-26 | Repeated Substring Pattern | Easy | Explored brute-force, string doubling | 50 mins |
