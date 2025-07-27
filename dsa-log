@@ -4,3 +4,6 @@ Topic wise learning
 
 2. https://leetcode.com/problems/repeated-substring-pattern/description/
 | 2025-07-26 | Repeated Substring Pattern | Easy | Explored brute-force, string doubling | 50 mins |
+
+3. https://leetcode.com/problems/shortest-palindrome/submissions/
+| 2025-07-27 | Shortest Palindrome | Hard | Brute force approach using prefix check + reverse suffix logic | 80 mins |
