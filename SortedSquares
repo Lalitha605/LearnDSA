@@ -66,3 +66,10 @@ public class Solution {
 //Highlights why two pointers are used (largest squares come from ends).
 //Shows how we fill the result array from the back to maintain sorted order.
 //Time complexity: O(n), Space complexity: O(n).
+
+//Why can’t we do this in-place?
+//Correct answer: Because overwriting destroys values we still need to compare; using a separate result array preserves input while building sorted output.
+//explanation 
+//“The optimal O(n) solution cannot be done in-place because we must compare values from both ends of the original array. Writing results back into 
+//the same array would overwrite elements that are still needed for future comparisons.
+//Therefore, a separate result array is required.”
