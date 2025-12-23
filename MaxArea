@@ -59,3 +59,11 @@ public class Solution {
         return maxArea;
     }
 }
+
+==========================================
+We move the pointer at the shorter line because the current area is limited by it. 
+Moving the taller line cannot increase the area, but moving the shorter one might find a taller boundary.
+
+We use two pointers starting at both ends to maximize width. At each step, the area is limited by the shorter height. 
+To potentially increase area, we move the pointer at the shorter height,
+since moving the taller one cannot improve the area. This results in an O(n) solution.
