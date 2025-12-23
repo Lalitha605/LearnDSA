@@ -1,0 +1,88 @@
+Given n non-negative integers representing an elevation map where the width of each bar is 1, 
+compute how much water it can trap after raining.
+https://leetcode.com/problems/trapping-rain-water/description/
+Example 1:
+Input: height = [0,1,0,2,1,0,1,3,2,1,2,1]
+Output: 6
+Explanation: The above elevation map (black section) is represented by array [0,1,0,2,1,0,1,3,2,1,2,1].
+In this case, 6 units of rain water (blue section) are being trapped.
+Example 2:
+Input: height = [4,2,0,3,2,5]
+Output: 9
+Constraints:
+n == height.length
+1 <= n <= 2 * 104
+0 <= height[i] <= 105
+===========================================
+Think of water as filling a valley
+Index: 0 1 2
+Height: 2 0 3
+At index 1, height = 0
+To the left = 2
+To the right = 3
+Water can only rise until it touches a wall.
+Left wall = 2
+Right wall = 3
+Water can’t be taller than the shorter wall, otherwise it would spill over.
+So the water level = min(2, 3) = 2
+But the floor is height 0
+So water trapped = water level - floor = 2 - 0 = 2
+Another example:
+Index: 0 1 2 3
+Height: 1 3 2 4
+Check index 2, height = 2
+Left max = 3
+Right max = 4
+Water level = min(3, 4) = 3
+Water trapped = 3 - 2 = 1
+The formula in words
+At any block:
+Look at the tallest block to the left → this sets a “left wall”
+Look at the tallest block to the right → this sets a “right wall”
+Water can rise only to the shorter wall → min(leftMax, rightMax)
+Remove the block’s own height → water above it = min(leftMax, rightMax) - height[i]
+
+Key takeaway
+min(leftMax, rightMax) = highest water level at that index
+Subtract height[i] = actual water above the block
+If height[i] is already taller than water level → no water → negative → take 0
+
+What decides water at an index?
+Water trapped at an index depends on two things:
+Tallest block to the left (leftMax)
+Tallest block to the right (rightMax)
+Water level at this block = min(leftMax, rightMax)
+Why min? Because water can’t rise above the shorter wall, otherwise it would spill.
+Then actual water trapped = water level - height at that index
+If the block is already as tall as the water level → trapped water = 0
+
+Why don’t we need both sides every time in two-pointer approach?
+In brute force, yes, you check leftMax and rightMax for every block.
+In two-pointer optimized method, we already keep track of leftMax and rightMax while moving pointers:
+Left pointer starts at 0 → moves right
+Right pointer starts at n-1 → moves left
+At each step, we move the smaller height pointer (more on that next)
+This works because the pointer with smaller height limits the water at that side.
+So we don’t need to scan the entire left and right for each index — we carry the max as we go.
+
+
+Why do we move the smaller side?
+Correct idea, let me clarify:
+Water trapped depends on the shorter wall.
+If height[left] < height[right]:
+Left is the limiting wall
+Moving left might find a taller wall → water trapped could increase
+Moving right won’t help, because left wall is still too small → water level still limited by left
+Similarly, if height[right] < height[left] → move right
+Intuition: You always try to increase the limiting wall to trap more water while decreasing width.
+Visual analogy
+Heights = [1, 0, 2]
+L       R
+Left wall = 1, Right wall = 2
+Water trapped at index 1 = min(1,2) - 0 = 1
+Since left < right, move left pointer → try to find taller wall on left
+If you moved right instead, it wouldn’t help, because water level still limited by left wall = 1
+
+Water at an index: min(leftMax, rightMax) - height[i]
+Two-pointer trick: we keep track of leftMax and rightMax without scanning every time
+Move smaller side: because it limits water, moving it gives a chance to trap more water
