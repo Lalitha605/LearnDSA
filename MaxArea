@@ -36,6 +36,41 @@ Moving the taller line won’t help
 Only moving the shorter line gives a chance for a taller height
 This is the core logic.
 
+C# Brute Force Code
+=====================
+public class Solution
+{
+    public int MaxArea(int[] height)
+    {
+        int n = height.Length;
+        int maxArea = 0;
+
+        // Pick first line
+        for (int i = 0; i < n; i++)
+        {
+            // Pick second line
+            for (int j = i + 1; j < n; j++)
+            {
+                int width = j - i;
+                int minHeight = Math.Min(height[i], height[j]);
+                int area = width * minHeight;
+
+                if (area > maxArea)
+                {
+                    maxArea = area;
+                }
+            }
+        }
+
+        return maxArea;
+    }
+}
+
+Try every pair of lines
+Calculate how much water they can hold
+Keep the maximum
+==============================================================
+
 Optimal
 =======
 public class Solution {
