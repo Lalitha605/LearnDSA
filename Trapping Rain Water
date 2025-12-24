@@ -86,3 +86,63 @@ If you moved right instead, it wouldn’t help, because water level still limite
 Water at an index: min(leftMax, rightMax) - height[i]
 Two-pointer trick: we keep track of leftMax and rightMax without scanning every time
 Move smaller side: because it limits water, moving it gives a chance to trap more water
+
+Brute force
+===========
+
+public class Solution {
+    public int Trap(int[] height) {
+        int n = height.Length;
+        int water = 0;
+        
+        for(int i=0;i<n;i++){
+            int leftMax=0;
+            int rightMax=0;
+            //leftmax
+            for(int l=0;l<=i;l++){
+                leftMax=Math.Max(leftMax, height[l]);
+            }
+            //rightmax
+            for(int r=i;r<n;r++){
+                rightMax=Math.Max(rightMax, height[r]);
+            }
+            //water trapped
+            int trapped = Math.Min(leftMax,rightMax)-height[i];
+            
+            if(trapped>0)
+                water=water+trapped;
+        }
+        return water;
+    }
+}
+===================================
+
+Optimal
+=======
+
+public class Solution {
+    public int Trap(int[] height) {
+        int left =0;
+        int right = height.Length-1;
+        int water = 0;
+        int leftMax=0;
+        int rightMax=0;
+        
+        while(left<right){
+            if(height[left]<height[right]){
+                leftMax=Math.Max(leftMax,height[left]);
+                water+=leftMax-height[left];
+                left++;
+            }
+            else{
+                rightMax = Math.Max(rightMax,height[right]);
+                water+=rightMax-height[right];
+                right--;
+            }
+        }
+        return water;
+    }
+}
+======
+We move the smaller side because it limits water, and moving it gives a chance to find a taller wall and trap more water
+At each step, water = max wall on the smaller side − current height on that side
