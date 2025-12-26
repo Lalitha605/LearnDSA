@@ -54,3 +54,44 @@ To increase the sum when it is below the target, since moving the larger pointer
 
 Why not brute force?
 Brute force takes O(n²) time and doesn’t scale, while two pointers solve it in O(n).
+
+
+Correct, strong explanation:
+Since the array is sorted, we use two pointers starting at both ends.
+If the sum is too small, we move the left pointer to increase the sum.
+If the sum is too large, we move the right pointer to decrease the sum.
+This works because moving pointers in a sorted array changes the sum in a predictable way.
+This sentence shows understanding.
+
+Code Review (Minor but Important)
+Your code is fine.
+One tiny improvement: return type when no answer (for completeness).
+return Array.Empty<int>();
+Everything else is solid.
+
+Dry Run — THIS IS WHERE MOST FAIL
+You must be able to say this out loud in interviews.
+Input
+numbers = [4,5,6,8,10]
+target = 14
+Step-by-step:
+left	right	numbers[left]	numbers[right]	sum	Action
+0	4	4	10	14	Found → return
+Result:
+[1,5] (1-based indexing)
+Your comment said {2,3} — that is WRONG for this input.
+This matters.
+Careless dry runs = rejected in interviews.
+Why Two Pointers Work (This Must Be Clear)
+
+Say this confidently:
+Because the array is sorted, increasing the left pointer increases the sum, 
+and decreasing the right pointer decreases the sum. This allows us to eliminate impossible pairs in O(n) time.
+
+Complexity (Say It Cleanly)
+Time: O(n) — each pointer moves once
+Space: O(1) — no extra memory
+
+Critical Pattern Rule (Memorize This)
+Sorted array + pair / range / comparison problem → THINK TWO POINTERS FIRST
+If you jump to HashMap here, you lose points.
