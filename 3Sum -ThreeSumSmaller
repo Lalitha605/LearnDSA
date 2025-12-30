@@ -1,0 +1,122 @@
+LeetCode 259 = “3Sum Smaller”
+Problem Statement
+Given an integer array nums and an integer target, return the number of index triplets (i, j, k) such that:
+0 ≤ i < j < k < nums.length
+nums[i] + nums[j] + nums[k] < target
+
+Example 1
+Input
+nums = [-2, 0, 1, 3]
+target = 2
+Output
+2
+Explanation
+The triplets that satisfy the condition are:
+(-2, 0, 1) → sum = -1 < 2
+(-2, 0, 3) → sum = 1 < 2
+
+Example 2
+Input
+nums = [3, 1, 0, -2]
+target = 4
+Output
+3
+Explanation
+Valid triplets:
+(-2, 0, 1) → sum = -1
+(-2, 0, 3) → sum = 1
+(0, 1, 3) → sum = 4 (not counted)
+
+Constraints
+0 ≤ nums.length ≤ 3000
+-100 ≤ nums[i] ≤ 100
+-100 ≤ target ≤ 100
+
+Count how many groups of 3 numbers have a sum smaller than target.
+Order matters: indices must satisfy i < j < k.
+Just return the count, not the triplets.
+
+Problem in simple words
+You are given:
+an array nums
+an integer target
+Count how many triplets (i, j, k) exist such that:
+i < j < k
+nums[i] + nums[j] + nums[k] < target
+You are counting, not returning the triplets.
+Example
+nums = [-2, 0, 1, 3]
+target = 2
+Valid triplets:
+(-2, 0, 1) → sum = -1 < 2 
+(-2, 0, 3) → sum = 1 < 2 
+Answer = 2
+Key Idea (VERY IMPORTANT)
+Sort the array
+Fix one number i
+Use two pointers (left, right) for the rest
+If sum is smaller than target →
+then ALL numbers between left and right also work
+
+This is the trick that avoids O(n³).
+
+public class Solution
+{
+    public int ThreeSumSmaller(int[] nums, int target)
+    {
+        int count = 0;
+        int n = nums.Length;
+
+        for (int i = 0; i < n; i++)
+        {
+            for (int j = i + 1; j < n; j++)
+            {
+                for (int k = j + 1; k < n; k++)
+                {
+                    int sum = nums[i] + nums[j] + nums[k];
+
+                    if (sum < target)
+                    {
+                        count++;
+                    }
+                }
+            }
+        }
+
+        return count;
+    }
+}
+
+===================================================
+
+public class Solution
+{
+    public int ThreeSumSmaller(int[] nums, int target)
+    {
+        Array.Sort(nums);
+        int count = 0;
+
+        for (int i = 0; i < nums.Length - 2; i++)
+        {
+            int left = i + 1;
+            int right = nums.Length - 1;
+
+            while (left < right)
+            {
+                int sum = nums[i] + nums[left] + nums[right];
+
+                if (sum < target)
+                {
+                    // all elements between left and right will work
+                    count += right - left;
+                    left++;
+                }
+                else
+                {
+                    right--;
+                }
+            }
+        }
+        return count;
+    }
+}
